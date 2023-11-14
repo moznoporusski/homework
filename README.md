@@ -1,74 +1,80 @@
 №1
 ```python
- for i in range(100, 500):
-    s = str(i)
-    n1 = int(s[0]) + int(s[1])
-    n2 = int(s[1]) + int(s[2])
-    first = str(max(n1, n2))
-    second = str((min(n1, n2)))
-    s1 = first + second
-    if s1 == '1412':
-        print(i)
-        break
+def process_number(N):
+    oct_N = oct(N)[2:]
+    if N % 7 == 0:
+        oct_R = oct_N + oct_N[-2:]
+    else:
+        remainder = N % 7
+        oct_remainder = oct(remainder * 7)[2:]
+        oct_R = oct_N + oct_remainder
+
+    R_decimal = int(oct_R, 8)
+
+    return R_decimal
+
+count = 0
+for N in range(1, 3001):
+    R = process_number(N)
+    if R < 3000:
+        count += 1
+
+print(count)
+
 ```
-395
+93
 
 №2
 ```python
- for i in range(10000, 1000, -1):
-    s = str(i)
-    n1 = int(s[0]) + int(s[1])
-    n2 = int(s[2]) + int(s[3])
-    first = str(min(n1, n2))
-    second = str((max(n1, n2)))
-    s1 = first + second
-    if s1 == '117':
-        print(i)
+def process_number(N):
+    binary_N = bin(N)[2:]
+    if N % 5 == 0:
+        binary_R = binary_N + binary_N[-3:]
+    else:
+        remainder = N % 5
+        binary_remainder = bin(remainder * 5)[2:]
+        binary_R = binary_N + binary_remainder
+
+    R_decimal = int(binary_R, 2)
+
+    return R_decimal
+
+N = 1
+while True:
+    R = process_number(N)
+    if R > 256:
         break
+    N += 1
+
+print(N)
+
 ```
-9810
+9
 
 №3
 ```python
- for i in range(100, 1000):
-    s = str(i)
-    n1 = int(s[0]) + int(s[1])
-    n2 = int(s[1]) + int(s[2])
-    first = str(min(n1, n2))
-    second = str((max(n1, n2)))
-    s1 = first + second
-    if s1 == '1115':
-        print(i)
-        break
-```
-296
+def process_number(N):
+    binary_N = bin(N)[2:]
+    if N % 3 == 0:
+        binary_R = '10' + binary_N[2:] + '1'
+    else:
+        remainder = N % 3
+        binary_remainder = bin(remainder * 2)[2:]
+        binary_R = binary_remainder + binary_N
 
-№4
-```python
- for i in range(100, 1000):
-    s = str(i)
-    n1 = int(s[0]) + int(s[1])
-    n2 = int(s[1]) + int(s[2])
-    first = str(max(n1, n2))
-    second = str(min(n1, n2))
-    s1 = first + second
-    if s1 == '159':
-        print(i)
-        break
-```
-187
+    R_decimal = int(binary_R, 2)
 
-№5
-```python
- for i in range(1000, 10000):
-    s = str(i)
-    n1 = int(s[0]) * int(s[1])
-    n2 = int(s[2]) * int(s[3])
-    first = str(max(n1, n2))
-    second = str((min(n1, n2)))
-    s1 = first + second
-    if s1 == '124':
-        print(i)
+    return R_decimal
+
+R_target = 8000
+N = 1
+while True:
+    R = process_number(N)
+    if R > R_target:
         break
+    N += 1
+
+print(R)
+
 ```
-1426
+9217
